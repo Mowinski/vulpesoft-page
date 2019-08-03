@@ -252,7 +252,54 @@ function progressCircle() {
 		fill: "#2be6ab",
 		emptyFill: "rgba(0, 0, 0, 0)"
 	});
+}
 
+function scrollToSection() {
+	$('a[href*=#]').bind('click', function(e) {
+		e.preventDefault(); // prevent hard jump, the default behavior
+
+		var target = $(this).attr("href"); // Set the target as variable
+
+		// perform animated scrolling by getting top-position of target-element and set it as scroll target
+		$('html, body').stop().animate({
+				scrollTop: $(target).offset().top
+		}, 600, function() {
+				location.hash = target; //attach the hash (#jumptarget) to the pageurl
+		});
+
+		return false;
+	});
+}
+
+
+function submitContactForm() {
+	$('#con_form').submit(function(event) {
+		var name = $('#name-input').val();
+		var email = $('#email-input').val();
+		var subject = $('#subject-input').val();
+		var message = $('#message-input').val();
+
+		$('#con_form').html('<p class="message-success">Sending...</p>');
+		const url = "https://staging.livingstone-game.com/api/contact/";
+		
+		const sendData = {
+			author: name,
+			email: email,
+			message: "Message from livingstone.\nSubject: " + subject + "\n\n" + message,
+		};
+
+		$.ajax({
+			method: "POST",
+			url: url,
+			dataType: "json",
+			data: sendData,
+			crossDomain: true,
+			success: function(msg) {
+				$('#con_form').html('<p class="message-success">Message was sent</p>');
+			}
+		})
+		event.preventDefault();
+	});
 }
 
 (function($) {
@@ -265,5 +312,6 @@ function progressCircle() {
 	videoPopup();
 	accordions();
 	progressCircle();
-
+	scrollToSection();
+	submitContactForm();
 })(jQuery);
