@@ -1819,3 +1819,37 @@ ul {
 	display: inline;
 	max-width: 10%;
 }
+
+
+.workshop-section-title {
+	text-align: left;
+	position: relative;
+}
+
+.workshop-section-title h2 {
+	text-transform: uppercase;
+	color: #f98a27;
+	font-weight: bolder;
+	letter-spacing: 1px;
+}
+
+.workshop-section-title h2 span {
+	background: #f98a27;
+	padding: 0 3px 5px;
+	display: inline-block;
+	color: #3f4240;
+	border-radius: 10px;
+}
+
+.workshop-section-title.left {
+	text-align: left;
+}
+
+.workshop-section-title.left:after {
+	left: 0;
+	margin-left: 0;
+}
+
+.workshop-section-title.dark h2 {
+	color: #0b1033;
+}
