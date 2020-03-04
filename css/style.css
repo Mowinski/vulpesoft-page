@@ -1853,3 +1853,9 @@ ul {
 .workshop-section-title.dark h2 {
 	color: #0b1033;
 }
+
+ul {
+	margin-left: 24px;
+	font-size: 20px;
+	letter-spacing: 1px;
+}
